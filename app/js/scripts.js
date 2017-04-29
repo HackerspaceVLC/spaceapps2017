@@ -12,8 +12,8 @@ function stream(){
                 if (device.kind == 'videoinput' && device.label.indexOf('back') !== -1) {
                     constraints = {
                         video: {
-                            'sourceId': device.deviceId,
-                            'optional': [{'sourceId': device.deviceId}]
+                            sourceId: device.deviceId,
+                            optional: [{sourceId: device.deviceId}]
                         },
                         video: true
                     };
@@ -33,6 +33,7 @@ function stream(){
             }
 
             navigator.mediaDevices.getUserMedia(constraints).then(function(streamVideo) {
+                console.log(constraints);
                 var url = window.URL.createObjectURL(streamVideo);
                 $('#camera').attr('src', url);
                 $('.camera-container').show();
