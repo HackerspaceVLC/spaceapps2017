@@ -8,22 +8,20 @@ function stream(){
             for (var device of devices) {
                 console.log(device);
                 if (device.kind == 'videoinput' && device.label.indexOf('back') !== -1) {
-                    if (window.stream) {
-                        videoElement.src = null;
-                        window.stream.stop();
-                    }
+                    console.log("test");
                     constraints = {
                         video: {
-                            sourceId: device.deviceId
-                        }
+                            'sourceId': device.deviceId
+                        },
+                        video: true
                     };
                 }
             }
 
             if (constraints == null) {
                 constraints = {
-                    'audio': false,
-                    'video': true
+                    audio: false,
+                    video: true
                 };
             }
 
