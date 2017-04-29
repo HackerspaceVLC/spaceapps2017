@@ -6,9 +6,6 @@ function stream(){
         function(devices) {
             var constraints = null;
             for (var device of devices) {
-                console.log(device);
-                console.log(device.kind == 'videoinput');
-                console.log(device.label.indexOf('back') !== -1);
                 if (device.kind == 'videoinput' && device.label.indexOf('back') !== -1) {
                     constraints = {
                         video: {
@@ -28,12 +25,9 @@ function stream(){
                     audio: false,
                     video: true
                 };
-
-                console.log('Setting up default camera');
             }
 
             navigator.mediaDevices.getUserMedia(constraints).then(function(streamVideo) {
-                console.log(constraints);
                 var url = window.URL.createObjectURL(streamVideo);
                 $('#camera').attr('src', url);
                 $('.camera-container').show();
