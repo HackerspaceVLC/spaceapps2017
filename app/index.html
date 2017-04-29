@@ -8,7 +8,20 @@
   <title>The HTML5 Herald</title>
 
 	<style>
-		#overlay{color:red;position:absolute}
+		#overlay{
+			color:red;
+			position:absolute;
+			z-index: 2;
+		}
+		.video_background {
+			position: fixed;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			z-index: 1;
+			height: 100%;
+		}
 	</style>
 
   <link rel="stylesheet" href="css/styles.css?v=1.0">
@@ -24,7 +37,7 @@
 <select id="datasource">
 	<option value="-1" selected> Elige una opcion </option>
 	<option value="0"> Landslides </option>
-	<option value="1"> Leopard Tortoises </option>
+	<option value="1"> ISS Live </option>
 </select>
 
 <select id="location" style="display: none">
@@ -32,10 +45,9 @@
 </select>
 <p id="info"></p>
 
-<input id='start' type='button' value = 'Iniciar'></input>
 <div class="camera-container">
 	<div id="overlay" style="display: none"> hola chavales</div>
-	<video id="camera" autoplay controls></video>
+	<video id="camera" autoplay></video>
 </div>
 
 
