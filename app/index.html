@@ -7,6 +7,10 @@
 
   <title>The HTML5 Herald</title>
 
+	<style>
+		#overlay{color:red;position:absolute}
+	</style>
+
   <link rel="stylesheet" href="css/styles.css?v=1.0">
 
   <!--[if lt IE 9]>
@@ -27,6 +31,13 @@
 	<option value="-1" selected> Elige una opcion </option>
 </select>
 <p id="info"></p>
+
+<input id='start' type='button' value = 'Iniciar'></input>
+<div class="camera-container">
+	<div id="overlay" style="display: none"> hola chavales</div>
+	<video id="camera" autoplay controls></video>
+</div>
+
 
 <iframe id= "map" width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://www.openstreetmap.org/export/embed.html" style="border: 1px solid black"></iframe>
 

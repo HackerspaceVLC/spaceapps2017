@@ -11,6 +11,19 @@ dataSources.on('change', function(){
 
 initialize();
 
+function stream(){
+  navigator.mediaDevices.getUserMedia({
+    'audio': false,
+    'video': true
+  }).then( function(streamVideo) {
+    var url = window.URL.createObjectURL(streamVideo);
+    $('#camera').attr('src', url);
+    $('#overlay').show();
+  }).catch(function() {
+        alert('Unable to access media');
+  });
+}
+
 function selectLandslide(){
   var json_landslides = JSON.parse(httpGet("https://data.nasa.gov/resource/tfkf-kniw.json"));
   var locationElement = $('#location');
@@ -32,6 +45,8 @@ function selectLandslide(){
 
 function initialize(){
   $('#datasource').val(-1);
+  $('#start').on('click', function(e) { stream(); });
+jQuery('#overlay').width(jQuery('#camera').width()).height(jQuery('#camera').height()).css({top:jQuery('#camera').offset().top,left:jQuery('#camera').offset().left});
 }
 
 function httpGet(theUrl)
