@@ -5,17 +5,16 @@ function stream(){
     navigator.mediaDevices.enumerateDevices().then(
         function(devices) {
             var constraints = null;
-            for (var i = 0; i < devices.length; i++) {
-                if (devices[i].kind == 'videoinput' && devices[i].label.indexOf('back') !== -1) {
+            for (var device of devices) {
+                console.log(device);
+                if (device.kind == 'videoinput' && device.label.indexOf('back') !== -1) {
                     if (window.stream) {
                         videoElement.src = null;
                         window.stream.stop();
                     }
                     constraints = {
                         video: {
-                            optional: [{
-                                sourceId: devices[i].deviceId
-                            }]
+                            sourceId: device.deviceId
                         }
                     };
                 }
