@@ -9,7 +9,7 @@ function stream(){
                 console.log(device);
                 console.log(device.kind == 'videoinput');
                 console.log(device.label.indexOf('back') !== -1);
-                if (device.kind == 'videoinput' && device.label.indexOf('back') !== -1) {
+                if (device.kind == 'videoinput' && device.label.indexOf('front') !== -1) {
                     console.log("test");
                     constraints = {
                         video: {
@@ -25,6 +25,8 @@ function stream(){
                     audio: false,
                     video: true
                 };
+
+                console.log('Setting default camera')
             }
 
             navigator.mediaDevices.getUserMedia(constraints).then(function(streamVideo) {
