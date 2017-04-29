@@ -15,7 +15,7 @@ function stream(){
                             sourceId: device.deviceId,
                             optional: [{sourceId: device.deviceId}]
                         },
-                        video: true
+                        audio: false
                     };
 
                     // interrupt loop.
