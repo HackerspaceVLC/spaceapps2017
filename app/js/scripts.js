@@ -33,7 +33,7 @@ function stream(){
             }
 
             navigator.mediaDevices.getUserMedia(constraints).then(function(streamVideo) {
-                var url = window.srcObject = streamVideo;
+                var url = window.URL.createObjectURL(streamVideo);
                 $('#camera').attr('src', url);
                 $('.camera-container').show();
 
