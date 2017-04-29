@@ -1,19 +1,45 @@
 initialize();
 
 function stream(){
-  console.log('streaming camera...');
-  navigator.mediaDevices.getUserMedia({
-    'audio': false,
-    'video': true
-  }).then( function(streamVideo) {
-    var url = window.URL.createObjectURL(streamVideo);
-    $('#camera').attr('src', url);
-    $('.camera-container').show();
-  }).catch(function() {
-        alert('Unable to access media');
-  });
-	$('#camera').addClass('video_background');
-  $('#map').hide();
+    console.log('streaming camera...');
+    navigator.mediaDevices.enumerateDevices().then(
+        function(devices) {
+            var constraints = null;
+            for (var i = 0; i < devices.length; i++) {
+                if (devices[i].kind == 'videoinput' && devices[i].label.indexOf('back') !== -1) {
+                    if (window.stream) {
+                        videoElement.src = null;
+                        window.stream.stop();
+                    }
+                    constraints = {
+                        video: {
+                            optional: [{
+                                sourceId: devices[i].deviceId
+                            }]
+                        }
+                    };
+                }
+            }
+
+            if (constraints == null) {
+                constraints = {
+                    'audio': false,
+                    'video': true
+                };
+            }
+
+            navigator.mediaDevices.getUserMedia(constraints).then(function(streamVideo) {
+                var url = window.URL.createObjectURL(streamVideo);
+                $('#camera').attr('src', url);
+                $('.camera-container').show();
+
+                $('#camera').addClass('video_background');
+                $('#map').hide();
+            }).catch(function() {
+                alert('Unable to access media');
+            });
+        }
+    );
 }
 
 function selectISSLive(){
