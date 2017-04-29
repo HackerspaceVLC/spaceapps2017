@@ -8,7 +8,7 @@ function stream(){
   }).then( function(streamVideo) {
     var url = window.URL.createObjectURL(streamVideo);
     $('#camera').attr('src', url);
-    $('#overlay').show();
+    $('.camera-container').show();
   }).catch(function() {
         alert('Unable to access media');
   });
