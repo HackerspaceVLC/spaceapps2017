@@ -6,8 +6,17 @@ function httpGet(theUrl)
     return xmlHttp.responseText;
 }
 
+function postCoordinates(url, lat, lon) {
+	$.post({url: url,
+				data: { lat: lat, lon: lon},
+				success: function(data){ console.log('post success');}
+
+	}).fail(function() {
+    console.log( "post error" );
+  });
+}
+
 var landslides = httpGet("https://data.nasa.gov/resource/tfkf-kniw.json");
 var json_landslides = JSON.parse(landslides);
-
 console.log(json_landslides[0].latitude);
 
