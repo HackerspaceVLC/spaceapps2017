@@ -101,3 +101,10 @@ function getBBox(lat, lon, area) {
     lon
   ];
 }
+// using context
+$('.ui.sidebar')
+  .sidebar({
+    context: $('.bottom.segment')
+  })
+  .sidebar('attach events', '.menu .item')
+;

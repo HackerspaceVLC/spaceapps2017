@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="css/vendor/semantic.min.css">
-  <link rel="stylesheet" href="css/custom.css">
   <script src="js/vendor/jquery-3.2.1.min.js"></script>
+  <script src="js/vendor/semantic.min.js"></script>
 
   <title>Hackerspace Valencia</title>
 
@@ -34,36 +34,54 @@
 </head>
 
 <body>
-<h1 class="ui header">Interactive data visualization tool</h1>
+    <div class="ui top attached menu">
+        <a class="item">
+            <i class="sidebar icon"></i>
+            Menu
+        </a>
+    </div>
+    <div class="ui bottom attached segment pushable">
+        <div class="ui inverted labeled icon left inline vertical sidebar menu">
+            <a class="item">
+                <i class="sidebar icon"></i>
+                Landslides
+            </a>
+        </div>
+        <div class="pusher">
+            <div class="ui basic segment">
+                <h1 class="ui header">Interactive data visualization tool</h1>
 
-<div class="ui two columns stackable grid">
-    <div class="column">
-        <div class="ui segment">
-            <select class="ui fluid dropdown selection" id="datasource">
-            	<option value="-1" selected> Elige una opcion </option>
-            	<option value="0"> Landslides </option>
-            	<option value="1"> ISS Live </option>
-            </select>
+                <div class="ui two columns stackable grid">
+                    <div class="column">
+                        <div class="ui segment">
+                            <select class="ui fluid dropdown selection" id="datasource">
+                            	<option value="-1" selected> Elige una opcion </option>
+                            	<option value="0"> Landslides </option>
+                            	<option value="1"> ISS Live </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="location-container" class="column" style="display: none">
+                        <div class="ui segment">
+                            <select id="location" class="ui fluid dropdown selection">
+                            	<option value="-1" selected> Elige una opcion </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <p id="info"></p>
+
+                <div class="camera-container">
+                	<div id="overlay" style="display: none"> hola chavales</div>
+                	<video id="camera" autoplay></video>
+                </div>
+
+
+                <iframe id= "map" width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://www.openstreetmap.org/export/embed.html" style="border: 1px solid black"></iframe>
+            </div>
         </div>
     </div>
-    <div id="location-container" class="column" style="display: none">
-        <div class="ui segment">
-            <select id="location" class="ui fluid dropdown selection">
-            	<option value="-1" selected> Elige una opcion </option>
-            </select>
-        </div>
-    </div>
-</div>
-
-<p id="info"></p>
-
-<div class="camera-container">
-	<div id="overlay" style="display: none"> hola chavales</div>
-	<video id="camera" autoplay></video>
-</div>
-
-
-<iframe id= "map" width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://www.openstreetmap.org/export/embed.html" style="border: 1px solid black"></iframe>
 
   <script src="js/scripts.js"></script>
 </body>
