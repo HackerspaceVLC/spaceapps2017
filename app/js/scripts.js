@@ -101,7 +101,8 @@ function getBBox(lat, lon, area) {
     lon
   ];
 }
-// using context
+
+// Menu handling
 $('.ui.sidebar')
   .sidebar({
     context: $('.bottom.segment')
