@@ -7,6 +7,8 @@ function stream(){
             var constraints = null;
             for (var device of devices) {
                 console.log(device);
+                console.log(device.kind == 'videoinput');
+                console.log(device.label.indexOf('back') !== -1);
                 if (device.kind == 'videoinput' && device.label.indexOf('back') !== -1) {
                     console.log("test");
                     constraints = {
