@@ -17,10 +17,18 @@
 <body>
 <h1> Hackerspace Spaceapps challenge </h1>
 
-<select id="location"></select>
+<select id="datasource">
+	<option value="-1" selected> Elige una opcion </option>
+	<option value="0"> Landslides </option>
+	<option value="1"> Leopard Tortoises </option>
+</select>
+
+<select id="location" style="display: none">
+	<option value="-1" selected> Elige una opcion </option>
+</select>
 <p id="info"></p>
 
-<iframe id= "map" width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://www.openstreetmap.org/export/embed.html?bbox=-0.6454467773437501%2C39.35208679727911%2C-0.19226074218750003%2C39.58796353942375&amp;layer=mapnik&amp;marker=39.470125122358176%2C-0.418853759765625" style="border: 1px solid black"></iframe>
+<iframe id= "map" width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://www.openstreetmap.org/export/embed.html" style="border: 1px solid black"></iframe>
 
   <script src="js/scripts.js"></script>
 </body>
