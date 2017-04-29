@@ -3,9 +3,11 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <link rel="stylesheet" href="css/vendor/semantic.min.css">
+  <link rel="stylesheet" href="css/custom.css">
   <script src="js/vendor/jquery-3.2.1.min.js"></script>
 
-  <title>The HTML5 Herald</title>
+  <title>Hackerspace Valencia</title>
 
 	<style>
 		#overlay{
@@ -32,17 +34,27 @@
 </head>
 
 <body>
-<h1> Hackerspace Spaceapps challenge </h1>
+<h1 class="ui header">Interactive data visualization tool</h1>
 
-<select id="datasource">
-	<option value="-1" selected> Elige una opcion </option>
-	<option value="0"> Landslides </option>
-	<option value="1"> ISS Live </option>
-</select>
+<div class="ui two columns stackable grid">
+    <div class="column">
+        <div class="ui segment">
+            <select class="ui fluid dropdown selection" id="datasource">
+            	<option value="-1" selected> Elige una opcion </option>
+            	<option value="0"> Landslides </option>
+            	<option value="1"> ISS Live </option>
+            </select>
+        </div>
+    </div>
+    <div id="location-container" class="column" style="display: none">
+        <div class="ui segment">
+            <select id="location" class="ui fluid dropdown selection">
+            	<option value="-1" selected> Elige una opcion </option>
+            </select>
+        </div>
+    </div>
+</div>
 
-<select id="location" style="display: none">
-	<option value="-1" selected> Elige una opcion </option>
-</select>
 <p id="info"></p>
 
 <div class="camera-container">

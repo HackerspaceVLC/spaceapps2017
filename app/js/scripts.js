@@ -31,7 +31,8 @@ function selectLandslide(){
   httpGet("https://data.nasa.gov/resource/tfkf-kniw.json",
       function(landslides) {
         var locationElement = $('#location');
-        locationElement.show();
+        var locationContainer = $('#location-container')
+        locationContainer.show();
         var infoElement = $('#info');
         for(var i=0; i<5; i++) {
           var loc = landslides[i].adminname1;
