@@ -1,9 +1,6 @@
-.ui.top.menu {
-    font-size: 4vh;
-}
-
+.ui.top.menu ,
 .bottom {
-    font-size: 6vh;
+    font-size: 4vh;
 }
 
 .ui.top.menu a {
@@ -34,7 +31,7 @@
 }
 
 .camera-container #overlay {
-    width: 20%;
+    width: 25%;
     background-color: rgba(255, 255, 255, 0.5)
 }
 
