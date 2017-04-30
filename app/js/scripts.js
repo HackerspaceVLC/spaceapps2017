@@ -51,6 +51,11 @@ function selectISSLive(){
     httpGet("https://api.wheretheiss.at/v1/satellites/25544",
       function(issLocation){
         console.log(issLocation);
+    httpGet("http://192.168.100.100/LAT=" + issLocation.latitude + "&LON=" + issLocation.longitude,
+        function(){
+          console.log('coordinates sent lat: ' + issLocation.latitude + ", lon:" + issLocation.longitude);
+    } );
+
         getCountry(issLocation.latitude, issLocation.longitude, function(country) {
           var infoElement = $('#overlay');
           if(country == null) {
@@ -189,6 +194,7 @@ function initialize(){
 
 function httpGet(theUrl, success, fail)
 {
+  if(!fail) {fail=function(){};}
   $.get( theUrl, success).fail(function() {
     fail();
     console.log( "error calling " + theUrl );
