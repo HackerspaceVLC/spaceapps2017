@@ -1,7 +1,31 @@
 .top #page-title {
-    margin: 10px 20px;
+    display: flex;
+    align-items: center;
+    margin: auto;
+    margin-left: 20px;
 }
 
 .pusher {
-    margin-top: 20px;
+    padding-top: 20px;
+}
+
+#overlay{
+    color:red;
+    position:absolute;
+    z-index: 2;
+}
+
+.camera-container #overlay {
+    width: 20%;
+    background-color: rgba(255, 255, 255, 0.5)
+}
+
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    height: 100%;
 }

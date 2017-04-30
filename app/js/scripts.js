@@ -32,7 +32,7 @@ function stream(){
                 $('#camera').attr('src', url);
                 $('.camera-container').show();
 
-                $('#camera').addClass('video_background');
+                $('#camera').addClass('video-background');
                 $('#map').hide();
             }).catch(function() {
                 alert('Unable to access media');
@@ -89,7 +89,7 @@ function initialize(){
     }
   });
 
-  jQuery('#overlay').width(jQuery('#camera').width()).height(jQuery('#camera').height()).css({top:jQuery('#camera').offset().top,left:jQuery('#camera').offset().left});
+  jQuery('#overlay').css({top:jQuery('#camera').offset().top,left:jQuery('#camera').offset().left});
 }
 
 function httpGet(theUrl, success)
