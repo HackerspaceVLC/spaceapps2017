@@ -63,20 +63,12 @@ function selectLandslide(){
   console.log('starting landslides...');
   httpGet("https://data.nasa.gov/resource/tfkf-kniw.json",
       function(landslides) {
-        var locationElement = $('#location');
-        var locationContainer = $('#location-container')
-        locationContainer.show();
-        var infoElement = $('#info');
-        for(var i=0; i<5; i++) {
-          var loc = landslides[i].adminname1;
-          locationElement.append("<option value='" + i + "'>" + loc + "</option>");
-        }
-
-        locationElement.on('change', function(){
-          var selectedLandslide = landslides[this.value];
-          infoElement.text("Country: " + selectedLandslide.countryname + ", date: "+ selectedLandslide.date );
-          setTimeout(stream, 1000);
-        });
+        var loc = getRandomInt(0,10);
+        var infoElement = $('#overlay');
+        var selectedLandslide = landslides[loc];
+        console.log('Landslide selected:' + selectedLandslide.latitude);
+        infoElement.html("Country: " + selectedLandslide.countryname + ", date: "+ selectedLandslide.date );
+        stream();
   });
 }
 
