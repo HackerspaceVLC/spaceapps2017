@@ -85,6 +85,9 @@ function selectISSLive(){
           }
 
           addOverlayInfo(displayedData);
+
+          var infoElement = $('#overlay #event-data');
+          $('<iframe width="150" height="100" src="https://www.youtube.com/embed/ddFvjfvPnqk?ecver=1&autoplay=1&controls=0" frameborder="0" allowfullscreen></iframe>').appendTo(infoElement);
         });
 
         httpGet("http://192.168.100.100/LAT=" + issLocation.latitude + "&LON=" + issLocation.longitude,
