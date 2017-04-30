@@ -51,40 +51,93 @@ function selectISSLive(){
     httpGet("https://api.wheretheiss.at/v1/satellites/25544",
       function(issLocation){
         console.log(issLocation);
+        var displayedData = [];
+
         getCountry(issLocation.latitude, issLocation.longitude, function(country) {
-          var infoElement = $('#overlay');
           if(country == null) {
-            infoElement.html("Country: I'm in the middle of nowhere!");
+              displayedData.push({
+                  label: "Country",
+                  value: "Nowhere!"
+              });
           }
           else {
-            infoElement.html("Country: " + country.long_name);
+              displayedData.push({
+                  label: "Country",
+                  value: country.long_name
+              });
           }
+
+          var ignoredFields = ['latitude', 'longitude', 'id', 'footprint', 'timestamp', 'solar_lat', 'solar_lon', 'daynum'];
+
+          for (item in issLocation) {
+            if (ignoredFields.indexOf(item) == -1) {
+                var value = issLocation[item];
+                switch (item) {
+                    case 'altitude':
+                    case 'velocity':
+                        value = parseInt(value);
+                }
+                displayedData.push({
+                    label: item,
+                    value: value
+                });
+            }
           }
-        );
-          setTimeout(stream, 1000);
+
+          addOverlayInfo(displayedData);
+        });
+        setTimeout(stream, 1000);
         // setInterval(selectISSLive, 5000);
       }
     );
 }
 
-function selectSatLive(offset_lat, offset_lon){
+function selectSatLive(offset_lat, offset_lon, sat_name){
     console.log('starting sat live');
     httpGet("https://api.wheretheiss.at/v1/satellites/25544",
-        function(issLocation){
-          getCountry(parseFloat(issLocation.latitude) + offset_lat, parseFloat(issLocation.longitude) + offset_lon,
-            function(country) {
-              var infoElement = $('#overlay');
-              if(country == null) {
-                infoElement.html("Country: I'm in the middle of nowhere!");
-              }
-              else {
-                infoElement.html("Country: " + country.long_name);
-              }
-            });
-      //post issLocation.latitude + offset_lat
-          setTimeout(stream, 1000);
-    // setInterval(selectISSLive, 5000);
+      function(issLocation){
+        var displayedData = [];
+
+        getCountry(issLocation.latitude, issLocation.longitude, function(country) {
+          if(country == null) {
+              displayedData.push({
+                  label: "Country",
+                  value: "Nowhere!"
+              });
+          }
+          else {
+              displayedData.push({
+                  label: "Country",
+                  value: country.long_name
+              });
+          }
+          displayedData.push({
+            label: "Name",
+            value: sat_name
+          });
+
+          var ignoredFields = ['latitude', 'longitude', 'id', 'footprint', 'timestamp', 'solar_lat', 'solar_lon', 'daynum', 'name'];
+
+          for (item in issLocation) {
+            if (ignoredFields.indexOf(item) == -1) {
+                var value = issLocation[item];
+                switch (item) {
+                    case 'altitude':
+                    case 'velocity':
+                        value = parseInt(value);
+                }
+                displayedData.push({
+                    label: item,
+                    value: value
+                });
+            }
+          }
+
+          addOverlayInfo(displayedData);
         });
+        setTimeout(stream, 1000);
+        // setInterval(selectISSLive, 5000);
+      });
 }
 
 function selectLandslide(){
@@ -94,9 +147,27 @@ function selectLandslide(){
         var loc = getRandomInt(0,10);
         var infoElement = $('#overlay');
         var selectedLandslide = landslides[loc];
+        var displayedData = [];
         console.log('Landslide selected:' + selectedLandslide.latitude);
         console.log(selectedLandslide);
-        infoElement.html("Country: " + selectedLandslide.countryname + ", date: "+ selectedLandslide.date );
+
+        var displayedFields = [
+            'countryname', 'landslide_size', 'near', 'trigger'
+        ];
+        displayedFields.forEach (function(item) {
+            ;
+            displayedData.push({
+                label: item,
+                value: selectedLandslide[item]
+            });
+        });
+
+        displayedData.push({
+            label: "date",
+            value: getRandomInt(1,30) + "/04/2017"
+        });
+
+        addOverlayInfo(displayedData);
         stream();
   });
 }
@@ -127,17 +198,20 @@ function addOverlayInfo(info) {
     var infoElement = $('#overlay #event-data');
 
     for (var item of info) {
-        $('<li>' + addIconFor(item.label) + item.value + '</li>').appendTo(list);
+        $('<li>' + formatLabel(item.label) + item.value + '</li>').appendTo(list);
     }
 
     infoElement.replaceWith(list);
 }
 
-function addIconFor(label) {
+function formatLabel(label) {
     switch (label) {
         case "country":
+        case "countryname":
             return '<i class="marker icon"></i>';
     }
+
+    label = label.replace('_', ' ');
 
     return '<strong>' + label.charAt(0).toUpperCase() + label.slice(1) + '</strong>: ';
 }
@@ -173,10 +247,10 @@ function initialize(){
         selectISSLive();
         break;
       case 'ses1':
-        selectSatLive(getRandomInt(-50, 50), getRandomInt(-50, 50));
+        selectSatLive(getRandomInt(-50, 50), getRandomInt(-50, 50), this.id);
         break;
       case 'noaa18':
-        selectSatLive(getRandomInt(-100, 100), getRandomInt(-100, 100));
+        selectSatLive(getRandomInt(-100, 100), getRandomInt(-100, 100), this.id);
         break;
       case 'animals':
         selectAnimals();
