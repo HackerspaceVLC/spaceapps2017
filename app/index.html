@@ -39,7 +39,7 @@
             <i class="sidebar icon"></i>
             Menu
         </a>
-        <h1 class="ui header">An Interactive data visualization tool</h1>
+        <h1 id="page-title" class="ui header">Interactive data visualization tool</h1>
     </div>
     <div class="ui bottom attached segment pushable">
         <div class="ui inverted labeled icon left inline vertical sidebar menu">
@@ -57,16 +57,11 @@
             </a>
         </div>
         <div class="pusher">
-            <div class="ui basic segment">
-
-                <div class="ui two columns stackable grid">
-                    <div id="location-container" class="column" style="display: none">
-                        <div class="ui segment">
-                            <select id="location" class="ui fluid dropdown selection">
-                            	<option value="-1" selected> Elige una opcion </option>
-                            </select>
-                        </div>
-                    </div>
+            <div class="ui segments">
+                <div class="ui segment" id="location-container" style="display: none">
+                    <select id="location" class="ui fluid dropdown selection">
+                        <option value="-1" selected> Elige una opcion </option>
+                    </select>
                 </div>
 
                 <div class="camera-container" style="display: none">
