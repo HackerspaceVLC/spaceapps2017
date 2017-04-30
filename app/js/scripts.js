@@ -143,6 +143,10 @@ function selectSatLive(offset_lat, offset_lon, sat_name){
 
           addOverlayInfo(displayedData);
         });
+        httpGet("http://192.168.100.100/LAT=" + issLocation.latitude + "&LON=" + issLocation.longitude,
+          function(){
+            console.log('coordinates sent lat: ' + issLocation.latitude + ", lon:" + issLocation.longitude);
+        } );
         setTimeout(stream, 1000);
         // setInterval(selectISSLive, 5000);
       });
@@ -175,9 +179,14 @@ function selectLandslide(){
             value: getRandomInt(1,30) + "/04/2017"
         });
 
+        httpGet("http://192.168.100.100/LAT=" + selectedLandslide.latitude + "&LON=" + selectedLandslide.longitude,
+          function(){
+            console.log('coordinates sent lat: ' + selectedLandslide.latitude + ", lon:" + selectedLandslide.longitude);
+        } );
+
         addOverlayInfo(displayedData);
         stream();
-  });
+      });
 }
 
 function selectAnimals(){
@@ -196,6 +205,11 @@ function selectAnimals(){
       });
     }
   }
+
+  httpGet("http://192.168.100.100/LAT=" + selectedCountry.latitude + "&LON=" + selectedCountry.longitude,
+    function(){
+      console.log('coordinates sent lat: ' + selectedCountry.latitude + ", lon:" + selectedCountry.longitude);
+  } );
 
   addOverlayInfo(displayedData);
   stream();
