@@ -1,8 +1,18 @@
-.top #page-title {
+.ui.top.menu,
+.bottom {
+    font-size: 2vh;
+}
+
+.ui.top.menu #page-title {
+    font-size: 3vh;
     display: flex;
     align-items: center;
     margin: auto;
     margin-left: 20px;
+}
+
+.ui.bottom .vertical.sidebar.menu {
+    font-size: 2vh;
 }
 
 .pusher {
