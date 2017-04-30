@@ -72,6 +72,19 @@ function selectLandslide(){
   });
 }
 
+function selectAnimals(){
+  httpGet("/spaceapps2017/app/data/animals.json",
+    function(countries) {
+        var loc = getRandomInt(0,4);
+        var infoElement = $('#overlay');
+        var selectedCountry = countries[loc];
+        console.log('Country selected:' + selectedLandslide.latitude);
+        infoElement.html("Country: " + selectedCountry.name + ", birds: "+ selectedCountry.birds);
+
+        stream();
+    });
+}
+
 function initialize(){
   var menu = $('.pushable .menu a');
 
@@ -90,7 +103,7 @@ function initialize(){
         selectSatLive(getRandomInt(-100, 100), getRandomInt(-100, 100));
         break;
       case 'animals':
-        selectISSLive();
+        selectAnimals();
         break;
     }
   });
