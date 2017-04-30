@@ -73,22 +73,16 @@ function selectLandslide(){
 }
 
 function selectAnimals(){
-  httpGet("/spaceapps2017/app/data/animals.json",
-    function(countries) {
-        var loc = getRandomInt(0,4);
-        var infoElement = $('#overlay');
-        var selectedCountry = countries[loc];
-        console.log('Country selected:' + selectedLandslide.latitude);
-        infoElement.html("Country: " + selectedCountry.name + ", birds: "+ selectedCountry.birds);
+  var loc = getRandomInt(0,4);
+  var infoElement = $('#overlay');
+  var selectedCountry = animals()[loc];
+  console.log('Country selected:' + selectedCountry.latitude);
+  infoElement.html("Country: " + selectedCountry.name + ", birds: "+ selectedCountry.birds);
 
-        stream();
-    });
+  stream();
 }
 
 function initialize(){
-  if (document.documentElement.requestFullscreen) {
-    document.documentElement.requestFullscreen();
-  }
   var menu = $('.pushable .menu a');
 
   menu.on('click', function() {

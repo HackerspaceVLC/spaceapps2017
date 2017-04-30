@@ -1,4 +1,5 @@
-[
+function animals(){
+return [
     {
         "name": "Kenia",
         "latitude": "0.1822443",
@@ -131,5 +132,6 @@
         "cacti": "220",
         "conifers": "12",
         "palms": "14"
-    },
-]
+    }
+];
+}
