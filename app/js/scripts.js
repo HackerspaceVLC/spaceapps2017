@@ -75,7 +75,7 @@ function selectLandslide(){
 function initialize(){
   var menu = $('.pushable .menu a');
 
-  menu.on('click', function(){
+  menu.on('click', function() {
     switch(this.id) {
       case 'landslides':
         selectLandslide();
