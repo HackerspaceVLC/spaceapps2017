@@ -73,6 +73,9 @@ function selectLandslide(){
 }
 
 function initialize(){
+  if (document.documentElement.requestFullscreen) {
+    document.documentElement.requestFullscreen();
+  }
   var menu = $('.pushable .menu a');
 
   menu.on('click', function() {
