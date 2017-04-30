@@ -1,9 +1,9 @@
 .ui.top.menu {
-    font-size: 2vh;
+    font-size: 4vh;
 }
 
 .bottom {
-    font-size: 3vh;
+    font-size: 6vh;
 }
 
 .ui.top.menu a {
@@ -11,7 +11,7 @@
 }
 
 .ui.top.menu #page-title {
-    font-size: 3vh;
+    font-size: 6vh;
     display: flex;
     align-items: center;
     margin: auto;
@@ -19,7 +19,7 @@
 }
 
 .ui.bottom .vertical.sidebar.menu {
-    font-size: 2vh;
+    font-size: 3vh;
 }
 
 .pusher {
