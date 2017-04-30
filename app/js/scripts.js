@@ -1,6 +1,11 @@
 initialize();
 
 function stream(){
+    var src = $('#camera').attr('src');
+    if (src != undefined) {
+        return;
+    }
+
     console.log('streaming camera...');
     navigator.mediaDevices.enumerateDevices().then(
         function(devices) {
@@ -67,6 +72,7 @@ function selectLandslide(){
         var infoElement = $('#overlay');
         var selectedLandslide = landslides[loc];
         console.log('Landslide selected:' + selectedLandslide.latitude);
+        console.log(selectedLandslide);
         infoElement.html("Country: " + selectedLandslide.countryname + ", date: "+ selectedLandslide.date );
         stream();
   });
@@ -77,9 +83,32 @@ function selectAnimals(){
   var infoElement = $('#overlay');
   var selectedCountry = animals()[loc];
   console.log('Country selected:' + selectedCountry.latitude);
-  infoElement.html("Country: " + selectedCountry.name + ", birds: "+ selectedCountry.birds);
+
+  var displayedData = [
+      {
+          label: "Country",
+          value: selectedCountry.name
+      },
+      {
+          label: "Birds",
+          value: selectedCountry.birds
+      }
+  ];
+
+  addOverlayInfo(displayedData);
 
   stream();
+}
+
+function addOverlayInfo(info) {
+    var list = $('<ul></ul>').attr('id', 'event-data');
+    var infoElement = $('#overlay #event-data');
+
+    for (var item of info) {
+        $('<li><strong>' + item.label + '</strong>: ' + item.value + '</li>').appendTo(list);
+    }
+
+    infoElement.replaceWith(list);
 }
 
 function initialize(){
