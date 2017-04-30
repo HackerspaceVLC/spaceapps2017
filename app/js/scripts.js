@@ -86,6 +86,11 @@ function selectISSLive(){
 
           addOverlayInfo(displayedData);
         });
+
+        httpGet("http://192.168.100.100/LAT=" + issLocation.latitude + "&LON=" + issLocation.longitude,
+          function(){
+            console.log('coordinates sent lat: ' + issLocation.latitude + ", lon:" + issLocation.longitude);
+        } );
         setTimeout(stream, 1000);
         // setInterval(selectISSLive, 5000);
       }
@@ -263,6 +268,7 @@ function initialize(){
 
 function httpGet(theUrl, success, fail)
 {
+  if(!fail) {fail=function(){};}
   $.get( theUrl, success).fail(function() {
     fail();
     console.log( "error calling " + theUrl );
