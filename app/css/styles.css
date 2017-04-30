@@ -1,6 +1,9 @@
-.ui.top.menu,
-.bottom {
+.ui.top.menu {
     font-size: 2vh;
+}
+
+.bottom {
+    font-size: 3vh;
 }
 
 .ui.top.menu #page-title {
@@ -20,6 +23,7 @@
 }
 
 #overlay{
+    margin-top: 5%;
     color:red;
     position:absolute;
     z-index: 2;
@@ -38,4 +42,5 @@
     right: 0;
     z-index: 1;
     height: 100%;
+    width: 100%;
 }
