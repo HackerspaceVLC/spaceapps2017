@@ -76,13 +76,14 @@ function initialize(){
   var dataSources = $('#datasource');
   dataSources.val(-1);
 
+  $('#iss-option').on('click', function(){
+    selectISSLive();
+  });
+
   dataSources.on('change', function(){
     switch(parseInt(this.value)) {
       case 0:
         selectLandslide();
-        break;
-      case 1:
-        selectISSLive();
         break;
     }
   });
