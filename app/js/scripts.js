@@ -49,15 +49,38 @@ function stream(){
 function selectISSLive(){
     console.log('starting ISS live');
     httpGet("https://api.wheretheiss.at/v1/satellites/25544",
-        function(issLocation){
+      function(issLocation){
+        console.log(issLocation);
+        getCountry(issLocation.latitude, issLocation.longitude, function(country) {
+          var infoElement = $('#overlay');
+          if(country == null) {
+            infoElement.html("Country: I'm in the middle of nowhere!");
+          }
+          else {
+            infoElement.html("Country: " + country.long_name);
+          }
+          }
+        );
           setTimeout(stream, 1000);
-    // setInterval(selectISSLive, 5000);
-        });
+        // setInterval(selectISSLive, 5000);
+      }
+    );
 }
 
 function selectSatLive(offset_lat, offset_lon){
+    console.log('starting sat live');
     httpGet("https://api.wheretheiss.at/v1/satellites/25544",
         function(issLocation){
+          getCountry(parseFloat(issLocation.latitude) + offset_lat, parseFloat(issLocation.longitude) + offset_lon,
+            function(country) {
+              var infoElement = $('#overlay');
+              if(country == null) {
+                infoElement.html("Country: I'm in the middle of nowhere!");
+              }
+              else {
+                infoElement.html("Country: " + country.long_name);
+              }
+            });
       //post issLocation.latitude + offset_lat
           setTimeout(stream, 1000);
     // setInterval(selectISSLive, 5000);
@@ -96,7 +119,6 @@ function selectAnimals(){
   }
 
   addOverlayInfo(displayedData);
-
   stream();
 }
 
@@ -117,7 +139,26 @@ function addIconFor(label) {
             return '<i class="marker icon"></i>';
     }
 
-    return '<strong>' + label + '</strong>: ';
+    return '<strong>' + label.charAt(0).toUpperCase() + label.slice(1) + '</strong>: ';
+}
+
+function getCountry(lat, lon, fn){
+  console.log('getting country');
+
+  httpGet("http://maps.googleapis.com/maps/api/geocode/json?latlng="+ lat + "," + lon + "&sensor=false",
+      function(country) {
+        if(country.results.length == 0){
+          fn(null)
+        }
+        else {
+          country.results[0].address_components.forEach(function(el) {
+            if(el.types[0] == "country"){
+              console.log("Country fetched:" + el.long_name);
+              fn(el);
+            }
+          });
+        }
+      }, function() {fn(null)});
 }
 
 function initialize(){
@@ -131,8 +172,8 @@ function initialize(){
       case 'iss':
         selectISSLive();
         break;
-      case 'sas1':
-        selectSatLive(getRandomInt(-100, 100), getRandomInt(-100, 100));
+      case 'ses1':
+        selectSatLive(getRandomInt(-50, 50), getRandomInt(-50, 50));
         break;
       case 'noaa18':
         selectSatLive(getRandomInt(-100, 100), getRandomInt(-100, 100));
@@ -146,9 +187,10 @@ function initialize(){
   jQuery('#overlay').css({top:jQuery('#camera').offset().top,left:jQuery('#camera').offset().left});
 }
 
-function httpGet(theUrl, success)
+function httpGet(theUrl, success, fail)
 {
   $.get( theUrl, success).fail(function() {
+    fail();
     console.log( "error calling " + theUrl );
   });
 }
