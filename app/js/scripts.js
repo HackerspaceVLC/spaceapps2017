@@ -50,6 +50,15 @@ function selectISSLive(){
         });
 }
 
+function selectSatLive(offset_lat, offset_lon){
+    httpGet("https://api.wheretheiss.at/v1/satellites/25544",
+        function(issLocation){
+      //post issLocation.latitude + offset_lat
+          setTimeout(stream, 1000);
+    // setInterval(selectISSLive, 5000);
+        });
+}
+
 function selectLandslide(){
   console.log('starting landslides...');
   httpGet("https://data.nasa.gov/resource/tfkf-kniw.json",
@@ -82,6 +91,12 @@ function initialize(){
       case 'iss':
         selectISSLive();
         break;
+      case 'sas1':
+        selectSatLive(getRandomInt(-100, 100), getRandomInt(-100, 100));
+        break;
+      case 'noaa18':
+        selectSatLive(getRandomInt(-100, 100), getRandomInt(-100, 100));
+        break;
       case 'animals':
         selectISSLive();
         break;
@@ -96,10 +111,12 @@ function httpGet(theUrl, success)
   $.get( theUrl, success).fail(function() {
     console.log( "error calling " + theUrl );
   });
-  // var xmlHttp = new XMLHttpRequest();
-  // xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
-  // xmlHttp.send( null );
-  // return xmlHttp.responseText;
+}
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
 }
 
 // Menu handling
