@@ -84,16 +84,16 @@ function selectAnimals(){
   var selectedCountry = animals()[loc];
   console.log('Country selected:' + selectedCountry.latitude);
 
-  var displayedData = [
-      {
-          label: "Country",
-          value: selectedCountry.name
-      },
-      {
-          label: "Birds",
-          value: selectedCountry.birds
-      }
-  ];
+  var ignoredFields = ['latitude', 'longitude'];
+  var displayedData = [];
+  for (item in selectedCountry) {
+    if (ignoredFields.indexOf(item) == -1 && selectedCountry[item] != "0") {
+      displayedData.push({
+        label: item,
+        value: selectedCountry[item]
+      });
+    }
+  }
 
   addOverlayInfo(displayedData);
 
@@ -105,10 +105,19 @@ function addOverlayInfo(info) {
     var infoElement = $('#overlay #event-data');
 
     for (var item of info) {
-        $('<li><strong>' + item.label + '</strong>: ' + item.value + '</li>').appendTo(list);
+        $('<li>' + addIconFor(item.label) + item.value + '</li>').appendTo(list);
     }
 
     infoElement.replaceWith(list);
+}
+
+function addIconFor(label) {
+    switch (label) {
+        case "country":
+            return '<i class="marker icon"></i>';
+    }
+
+    return '<strong>' + label + '</strong>: ';
 }
 
 function initialize(){

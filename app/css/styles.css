@@ -6,6 +6,10 @@
     font-size: 3vh;
 }
 
+.ui.top.menu a {
+    background-color: lightgrey;
+}
+
 .ui.top.menu #page-title {
     font-size: 3vh;
     display: flex;
@@ -24,14 +28,19 @@
 
 #overlay{
     margin-top: 5%;
-    color:red;
-    position:absolute;
+    color: black;
+    position: absolute;
     z-index: 2;
 }
 
 .camera-container #overlay {
     width: 20%;
     background-color: rgba(255, 255, 255, 0.5)
+}
+
+.camera-container ul {
+    padding-left: 10px;
+    list-style-type: none;
 }
 
 .video-background {

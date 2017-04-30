@@ -1,7 +1,7 @@
 function animals(){
 return [
     {
-        "name": "Kenia",
+        "country": "Kenia",
         "latitude": "0.1822443",
         "longitude": "35.6643066",
         "birds": "1142",
@@ -20,7 +20,7 @@ return [
         "palms": "0"
     },
     {
-        "name": "Spain",
+        "country": "Spain",
         "latitude": "36.6875651",
         "longitude": "-4.7134845",
         "birds": "382",
@@ -39,7 +39,7 @@ return [
         "palms": "0"
     },
     {
-        "name": "Australia",
+        "country": "Australia",
         "latitude": "-24.9924519",
         "longitude": "115.2261784",
         "birds": "706",
@@ -58,7 +58,7 @@ return [
         "palms": "0"
     },
     {
-        "name": "Canada",
+        "country": "Canada",
         "latitude": "52.290843",
         "longitude": "-73.1368179",
         "birds": "322",
@@ -77,7 +77,7 @@ return [
         "palms": "0"
     },
     {
-        "name": "Russia",
+        "country": "Russia",
         "latitude": "68.8662931",
         "longitude": "143.3050942",
         "birds": "286",
@@ -96,7 +96,7 @@ return [
         "palms": "0"
     },
     {
-        "name": "Mexico",
+        "country": "Mexico",
         "latitude": "19.3910038",
         "longitude": "-99.2836971",
         "birds": "1091",
@@ -115,7 +115,7 @@ return [
         "palms": "87"
     },
     {
-        "name": "Argentina",
+        "country": "Argentina",
         "latitude": "-33.9779087",
         "longitude": "-63.1365641",
         "birds": "1006",
