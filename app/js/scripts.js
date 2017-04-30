@@ -45,7 +45,6 @@ function selectISSLive(){
     console.log('starting ISS live');
     httpGet("https://api.wheretheiss.at/v1/satellites/25544",
         function(issLocation){
-          goTo(issLocation.latitude, issLocation.longitude);
           setTimeout(stream, 1000);
     // setInterval(selectISSLive, 5000);
         });
@@ -67,7 +66,7 @@ function selectLandslide(){
         locationElement.on('change', function(){
           var selectedLandslide = landslides[this.value];
           infoElement.text("Country: " + selectedLandslide.countryname + ", date: "+ selectedLandslide.date );
-          goTo(selectedLandslide.latitude, selectedLandslide.longitude);
+          setTimeout(stream, 1000);
         });
   });
 }
@@ -101,32 +100,6 @@ function httpGet(theUrl, success)
   // xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
   // xmlHttp.send( null );
   // return xmlHttp.responseText;
-}
-
-function goTo(lat, lon){
-    var bbox = getBBox(parseFloat(lat), parseFloat(lon), 100000);
-    var url = 'http://www.openstreetmap.org/export/embed.html?bbox=' + bbox[0] + '%2C' + bbox[1] + '%2C' + bbox[2] + '%2C' + bbox[3] +  '&amp;layer=mapnik&amp;marker=' + lat + '%2C' + lon;
-    $('#map').attr('src', url);
-}
-
-function getCoordOffset(what, lat, lon, offset) {
-  earthRadius = 6378137;
-  coord = [lat, lon];
-
-  radOff = what === 0 ? offset / earthRadius : offset / (earthRadius * Math.cos(Math.PI * coord[0] / 180));
-  return coord[what] + radOff * 180 / Math.PI;
-}
-
-function getBBox(lat, lon, area) {
-  offset = area / 2;
-  return [
-    getCoordOffset(1, lat, lon, -offset),
-    getCoordOffset(0, lat, lon, -offset),
-    getCoordOffset(1, lat, lon, offset),
-    getCoordOffset(0, lat, lon, offset),
-    lat,
-    lon
-  ];
 }
 
 // Menu handling
