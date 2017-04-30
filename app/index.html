@@ -42,9 +42,17 @@
     </div>
     <div class="ui bottom attached segment pushable">
         <div class="ui inverted labeled icon left inline vertical sidebar menu">
-            <a class="item">
-                <i class="sidebar icon"></i>
+            <a class="item" id="landslides" href="#0">
+                <i class="align center icon"></i>
                 Landslides
+            </a>
+            <a class="item" id="iss" href="#1">
+                <i class="space shuttle icon"></i>
+                Live ISS
+            </a>
+            <a class="item" id="animals" href="#2">
+                <i class="paw icon"></i>
+                Country animals
             </a>
         </div>
         <div class="pusher">
@@ -52,15 +60,6 @@
                 <h1 class="ui header">An Interactive data visualization tool</h1>
 
                 <div class="ui two columns stackable grid">
-                    <div class="column">
-                        <div class="ui segment">
-                            <select class="ui fluid dropdown selection" id="datasource">
-                            	<option value="-1" selected> Elige una opcion </option>
-                            	<option value="0"> Landslides </option>
-                            	<option value="1"> ISS Live </option>
-                            </select>
-                        </div>
-                    </div>
                     <div id="location-container" class="column" style="display: none">
                         <div class="ui segment">
                             <select id="location" class="ui fluid dropdown selection">

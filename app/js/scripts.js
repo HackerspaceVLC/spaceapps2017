@@ -73,15 +73,17 @@ function selectLandslide(){
 }
 
 function initialize(){
-  var dataSources = $('#datasource');
-  dataSources.val(-1);
+  var menu = $('.pushable .menu a');
 
-  dataSources.on('change', function(){
-    switch(parseInt(this.value)) {
-      case 0:
+  menu.on('click', function(){
+    switch(this.id) {
+      case 'landslides':
         selectLandslide();
         break;
-      case 1:
+      case 'iss':
+        selectISSLive();
+        break;
+      case 'animals':
         selectISSLive();
         break;
     }
